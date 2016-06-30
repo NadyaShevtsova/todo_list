@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title TodoList
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+  %body{ body_attributes }
+    .container
+      #user_nav
+        - if user_signed_in?
+          = "Signed in as #{current_user.email} "
+          = link_to "Sign out", destroy_user_session_path, :method => :delete
+        - else
+          = link_to "Sign Up", new_user_registration_path
+          or
+          =link_to "Sign In", new_user_session_path
+
+      #flash_message
+        - flash.each do |name, msg|
+          = content_tag :div, msg, id: "flash_#{name}"
+      = yield
+  = javascript_include_tag 'application'
+
+

@@ -1,0 +1,19 @@
+default: &default
+  adapter:  postgresql
+  user:     postgres
+  password: root
+  encoding: utf8
+  host:     localhost
+
+development:
+  database: todolist_development
+  <<: *default
+
+test:
+  database: todolist_test
+  <<: *default
+
+production:
+  database: todolist_production
+  <<: *default
+

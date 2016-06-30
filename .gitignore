@@ -1,0 +1,10 @@
+/.bundle
+/log/*
+chromedriver.log
+/tmp
+.sass-cache/
+*sw?
+.ruby-version
+.ruby-gemset
+tmp/**/*
+config/database.yml

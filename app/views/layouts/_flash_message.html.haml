@@ -1,0 +1,6 @@
+#flash_message
+  - if flash.count > 0
+    .center.alert.fade.in.alert-danger
+      %button.close{ "data-dismiss" => "alert" }×
+      - flash.each do |name, msg|
+        = content_tag :div, msg, id: "flash_#{name}"

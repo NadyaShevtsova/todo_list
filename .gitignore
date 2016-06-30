@@ -8,3 +8,4 @@ chromedriver.log
 .ruby-gemset
 tmp/**/*
 config/database.yml
+.byebug_history

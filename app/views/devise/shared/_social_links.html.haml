@@ -1,0 +1,10 @@
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    - if current_user and current_user.authorizations.pluck(:provider).include?(provider.to_s)
+      = "#{provider.to_s.titleize} connected"
+    - else
+      = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-block btn-social btn-#{provider}" do
+        %span{class: "fa fa-#{provider}"}
+        &nbsp; | &nbsp; Login with #{OmniAuth::Utils.camelize(provider)}
+      %br/
+

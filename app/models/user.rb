@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
 
   has_many :identities, dependent: :destroy
+  has_many :projects, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 

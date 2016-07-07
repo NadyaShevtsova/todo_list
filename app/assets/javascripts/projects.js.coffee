@@ -1,20 +1,14 @@
 @module 'Projects', ->
   @init =->
-    loadFormToModal()
+    Common.loadFormToModal()
     submitProjectForm()
     initDeleteProject()
 
-  loadFormToModal = ->
-    $('body').on 'click', 'a.open-project-js', (e) ->
-      e.preventDefault()
-      $('#projects-form').modal('show')
-      $($(@).data('remote-target')).load $(@).attr('href')
-
-    $('#projects-form').on 'hidden.bs.modal', (e) ->
+    $('#modals-form').on 'hidden.bs.modal', (e) ->
       $(@).find('.modal-content').empty()
 
   submitProjectForm = ->
-    $('#projects-form').on 'submit', 'form', (e) ->
+    $('#modals-form').on 'submit', 'form', (e) ->
       e.preventDefault()
       self = $(@)
 
@@ -24,11 +18,12 @@
         method: self.attr('method').toUpperCase()
         data: self.serialize()
         success: (data) ->
-          $('#projects-form').modal('hide')
+          $('#modals-form').modal('hide')
           Notifications.success(data.success)
           if self.attr('action') == "/projects"
-            $(".projects-list").prepend JST['templates/projects']({ id: data.id, name: data.name })
+            $(".projects-list").append JST['templates/projects']({ id: data.id, name: data.name })
           else
+            console.log(".projects-list div#project_#{data.id}")
             $(".projects-list div#project_#{data.id}").find(".project-name").text(data.name)
         error: (xhr, ajaxOptions, thrownError) ->
             Forms.submitting(self)
@@ -54,7 +49,7 @@
           url: self.attr('href')
           success: (data) ->
             self.closest(".project-item").remove()
-            $('#projects-form').modal('hide')
+            $('#modals-form').modal('hide')
             Notifications.success(data.success)
             error: (xhr, ajaxOptions, thrownError) ->
               response = $parseJSON(xhr.responseText)

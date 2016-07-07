@@ -4,7 +4,7 @@
   <a class="project_action delete-project-js" href="/projects/<%= @id %>.json">
     <div class="glyphicon glyphicon-remove"></div>
   </a>
-  <a data-remote-target="#projects-form .modal-content" class="open-project-js project_action" title="Edit"
+  <a data-remote-target="#modals-form .modal-content" class="open-modal-js project_action" title="Edit"
     href="/projects/<%= @id %>/edit">
     <div class="glyphicon glyphicon-pencil"></div>
   </a>

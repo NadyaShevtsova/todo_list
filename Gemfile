@@ -6,6 +6,7 @@ gem 'devise'
 gem 'faker'
 gem 'figaro'
 gem "font-awesome-rails"
+gem 'gon'
 gem 'haml'
 gem 'jquery-rails'
 gem 'omniauth'

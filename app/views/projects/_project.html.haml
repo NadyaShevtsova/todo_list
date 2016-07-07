@@ -1,0 +1,7 @@
+= content_tag_for :div, project, class: 'project-item' do
+  %span.project_name= project.name
+  = link_to project_path(project, format: :json), class: "project_action delete-project-js" do
+    .glyphicon.glyphicon-remove
+  = link_to edit_project_path(project.id), data: { :'remote-target' => '#projects-form .modal-content' }, class: 'open-project-js project_action', title: 'Edit' do
+    .glyphicon.glyphicon-pencil
+

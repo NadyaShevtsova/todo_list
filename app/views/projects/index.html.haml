@@ -1,1 +1,21 @@
 %p Hello world!
+.col-md-12
+  .projects-list
+    - if @projects.blank?
+      = 'No projects'
+    - else
+      = render partial: "project", collection: @projects
+
+.col-md-12
+  %br
+    %center
+      = link_to new_project_path, data: { :'remote-target' => '#projects-form .modal-content' },
+                                  class: 'open-project-js btn btn-primary',
+                                  title: "New" do
+        = image_tag 'plus_blue.png'
+        &nbsp;
+        %strong= "Add TODO List"
+
+= content_for :overlay do
+  = render "overlays/projects/form"
+

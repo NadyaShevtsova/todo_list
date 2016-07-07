@@ -1,0 +1,2 @@
+<small class="text-danger"> <%= @errors%> </small>
+

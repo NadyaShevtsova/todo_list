@@ -17,5 +17,6 @@
           = content_tag :div, msg, id: "flash_#{name}"
       = yield
   = javascript_include_tag 'application'
+  = yield :overlay
 
 

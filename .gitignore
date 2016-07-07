@@ -9,6 +9,7 @@ chromedriver.log
 tmp/**/*
 config/database.yml
 .byebug_history
+logfile
 
 # Ignore application configuration
 /config/application.yml

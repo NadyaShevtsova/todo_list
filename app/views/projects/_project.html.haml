@@ -1,7 +1,30 @@
-= content_tag_for :div, project, class: 'project-item' do
-  %span.project-name= project.name
-  = link_to project_path(project, format: :json), class: "project_action delete-project-js" do
-    .glyphicon.glyphicon-remove
-  = link_to edit_project_path(project.id), data: { :'remote-target' => '#modals-form .modal-content' }, class: 'open-modal-js project_action', title: 'Edit' do
-    .glyphicon.glyphicon-pencil
+.todo-list
+  .row
+    .col-md-2
+    .col-md-8.list-header
+      .row
+        = content_tag_for :div, project, class: 'project-item' do
+          .col-md-1{style: "width: 5%"}
+            = image_tag 'table.png'
+          .col-md-9{style: "width: 84.333%"}
+            %span.project-name= project.name
+          .col-md-2{style: "width: 10.666%"}
+            = link_to edit_project_path(project.id), data: { :'remote-target' => '#modals-form .modal-content' }, class: 'open-modal-js project_action', title: 'Edit' do
+              = image_tag "edit_blue.png"
+            %span.separator
+              \|
+            = link_to project_path(project, format: :json), class: "project_action delete-project-js" do
+              = image_tag "trash_blue.png"
+    .col-md-2
+
+  .row
+    .col-md-2
+    .col-md-8.create-task
+      .row
+        .span1
+          = image_tag "plus_green.png", class: "green-plus-icon"
+        .span9
+        .span2
+
+    .col-md-2
 

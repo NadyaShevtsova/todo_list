@@ -48,7 +48,7 @@
           method: 'DELETE'
           url: self.attr('href')
           success: (data) ->
-            self.closest(".project-item").remove()
+            self.closest(".project-item").closest(".todo-list").remove()
             $('#modals-form').modal('hide')
             Notifications.success(data.success)
             error: (xhr, ajaxOptions, thrownError) ->

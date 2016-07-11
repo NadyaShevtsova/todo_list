@@ -55,10 +55,17 @@
   initSortable = ->
     $('#sortable').sortable
       cursor: "move"
-      #placeholder: "highlight"
       handle: '.move'
+      placeholder: 'highlight'
+      start: (event, ui) ->
+        ui.item.toggleClass 'highlight'
+        return
+      stop: (event, ui) ->
+        ui.item.toggleClass 'highlight'
+        return
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
+    $('#sortable').disableSelection()
 
 $ ->
   Tasks.init() if $('#projects-index').length

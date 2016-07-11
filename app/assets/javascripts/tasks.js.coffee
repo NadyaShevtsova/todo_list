@@ -17,11 +17,11 @@
         success: (data) ->
           $('#modals-form').modal('hide')
           Notifications.success(data.success)
-          if self.attr('action') == "/projects/" + data.project_id + "/tasks"
-            $(".tasks-list .task:last").after JST['templates/tasks']({ id: data.id, project_id: data.project_id, name: data.name, mark_as_done: data.mark_as_done })
+          if self.attr('action') == "/projects/" + data.task.project_id + "/tasks"
+            $(".list_" + data.task.project_id + " .tasks-list").append JST['templates/tasks']({ task: data.task })
           else
-            $("#task_#{data.id}").find(".task-done input[type=checkbox]").prop('checked', data.mark_as_done)
-            $("#task_#{data.id}").find(".task-name").text(data.name)
+            $("#task_#{data.id}").find(".task-done input[type=checkbox]").prop('checked', data.task.mark_as_done)
+            $("#task_#{data.id}").find(".task-name").text(data.task.name)
         error: (xhr, ajaxOptions, thrownError) ->
             Forms.submitting(self)
 
@@ -53,7 +53,7 @@
               Notifications.error(response.error)
 
   initSortable = ->
-    $('#sortable').sortable
+    $('.sortable').sortable
       cursor: "move"
       handle: '.move'
       placeholder: 'highlight'
@@ -65,7 +65,7 @@
         return
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
-    $('#sortable').disableSelection()
+    $('.sortable').disableSelection()
 
 $ ->
   Tasks.init() if $('#projects-index').length

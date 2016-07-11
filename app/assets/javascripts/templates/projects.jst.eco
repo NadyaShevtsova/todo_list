@@ -1,4 +1,4 @@
-<div class="todo-list">
+<div class="todo-list list_<%= @id %>">
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 list-header">

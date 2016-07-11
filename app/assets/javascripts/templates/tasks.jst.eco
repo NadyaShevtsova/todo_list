@@ -1,22 +1,22 @@
-<div class="task" id="task_<%= @id %>">
+<div class="task" id="task_<%= @task.id %>">
   <div class="row task-item">
     <div class="col-md-1 task-done" style="width: 5.7%">
-      <input type="checkbox" name="mark_as_done" id="mark_as_done_<%= @id %>" value="true" <%= "checked='checked'" if @mark_as_done %>">
+      <input type="checkbox" name="mark_as_done" id="mark_as_done_<%= @task.id %>" value="true" <%= "checked='checked'" if @task.mark_as_done %>">
     </div>
     <div class="col-md-9 task-name" style="width: 76.9%">
-      <%= @name %>
+      <%= @task.name %>
     </div>
     <div class="col-md-2 task-actions" style="width: 17%">
       <img class="move ui-sortable-handle" title="Move me Up or Down" src="/images/move.png" alt="Move">
       <span class="separator-grey">
         |
       </span>
-      <a data-remote-target="#modals-form .modal-content" class="open-modal-js" title="Edit" href="/projects/<%= @project_id %>/tasks/<%= @id %>/edit"><img src="/images/edit_grey.png" alt="Edit grey">
+      <a data-remote-target="#modals-form .modal-content" class="open-modal-js" title="Edit" href="/projects/<%= @task.project_id %>/tasks/<%= @task.id %>/edit"><img src="/images/edit_grey.png" alt="Edit grey">
       </a>
       <span class="separator-grey">
         |
       </span>
-      <a class="delete-task-js" href="/projects/<%= @project_id %>/tasks/<%= @id %>.json"><img src="/images/trash_grey.png" alt="Trash grey" title="Delete">
+      <a class="delete-task-js" href="/projects/<%= @task.project_id %>/tasks/<%= @task.id %>.json"><img src="/images/trash_grey.png" alt="Trash grey" title="Delete">
       </a>
     </div>
   </div>

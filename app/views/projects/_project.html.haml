@@ -1,4 +1,4 @@
-.todo-list
+%div{ class: "todo-list list_#{project.id}"}
   .row
     .col-md-2
     .col-md-8.list-header
@@ -32,10 +32,9 @@
                                                      class: 'open-modal-js btn green-button',
                                                      title: "New"
     .col-md-2
-  - unless project.tasks.empty?
-    .row
-      .col-md-2
-      .col-md-8.tasks-list#sortable{ "data-update-url" => sort_project_tasks_url(project) }
-        = render partial: "tasks/task", collection: project.tasks.order(:prioritize)
-      .col-md-2
+  .row
+    .col-md-2
+    .col-md-8.tasks-list.sortable{ "data-update-url" => sort_project_tasks_url(project) }
+      = render partial: "tasks/task", collection: project.tasks.order(:prioritize)
+    .col-md-2
 

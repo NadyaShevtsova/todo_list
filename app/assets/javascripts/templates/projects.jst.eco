@@ -4,18 +4,18 @@
     <div class="col-md-8 list-header">
       <div class="row">
         <div class="project project-item" id="project_<%= @id %>"><div class="col-md-1" style="width: 5%">
-          <img src="/assets/table-e47d4dcef15e05dbf958e1e4dd06b1250d12017056956ee493adf33315664bf3.png" alt="Table e47d4dcef15e05dbf958e1e4dd06b1250d12017056956ee493adf33315664bf3">
+          <img src="/images/table.png" alt="Table">
         </div>
         <div class="col-md-9" style="width: 84.333%">
           <span class="project-name"> <%= @name %> </span>
         </div>
         <div class="col-md-2" style="width: 10.666%">
-          <a data-remote-target="#modals-form .modal-content" class="open-modal-js project_action" title="Edit" href="/projects/<%= @id %>/edit"><img src="/assets/edit_blue-a31023cfc663e0b3f0663b821eb39fc4f883d22c45d1b7be11461034e0d9d1fa.png" alt="Edit blue a31023cfc663e0b3f0663b821eb39fc4f883d22c45d1b7be11461034e0d9d1fa">
+          <a data-remote-target="#modals-form .modal-content" class="open-modal-js project_action" title="Edit" href="/projects/<%= @id %>/edit"><img src="/images/edit_blue.png" alt="Edit blue">
           </a>
           <span class="separator">
             |
           </span>
-          <a class="project_action delete-project-js" href="/projects/<%= @id %>.json"><img src="/assets/trash_blue-c7674cdcf72ea2e697a8cfae08a2b0705009b2e1168389268827840d53ada77f.png" alt="Trash blue c7674cdcf72ea2e697a8cfae08a2b0705009b2e1168389268827840d53ada77f">
+          <a class="project_action delete-project-js" href="/projects/<%= @id %>.json"><img src="/images/trash_blue.png" alt="Trash blue">
           </a>
         </div>
         </div>
@@ -28,7 +28,7 @@
     <div class="col-md-8 create-task">
       <div class="row">
         <div class="span1">
-          <img class="green-plus-icon" src="/assets/plus_green-5381ddda11ddca535820367cc62989ab8924be1bd6f8efa43618d5a5222e28e6.png" alt="Plus green 5381ddda11ddca535820367cc62989ab8924be1bd6f8efa43618d5a5222e28e6">
+          <img class="green-plus-icon" src="/images/plus_green.png" alt="Plus green">
         </div>
         <div class="span9"></div>
         <div class="span2"></div>

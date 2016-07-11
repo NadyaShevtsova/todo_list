@@ -7,16 +7,16 @@
       <%= @name %>
     </div>
     <div class="col-md-2 task-actions" style="width: 17%">
-      <img class="move ui-sortable-handle" title="Move me Up or Down" src="/assets/move-f3af82746bdf74fad7fe04d8ed25a9894a53f3b5cfa4b63258572a8d26f5d6c4.png" alt="Move f3af82746bdf74fad7fe04d8ed25a9894a53f3b5cfa4b63258572a8d26f5d6c4">
+      <img class="move ui-sortable-handle" title="Move me Up or Down" src="/images/move.png" alt="Move">
       <span class="separator-grey">
         |
       </span>
-      <a data-remote-target="#modals-form .modal-content" class="open-modal-js" title="Edit" href="/projects/<%= @project_id %>/tasks/<%= @id %>/edit"><img src="/assets/edit_grey-80974fe2474a5cb01a955f7696bb86b1241a310c5311e6a7e87ff63c692302a0.png" alt="Edit grey">
+      <a data-remote-target="#modals-form .modal-content" class="open-modal-js" title="Edit" href="/projects/<%= @project_id %>/tasks/<%= @id %>/edit"><img src="/images/edit_grey.png" alt="Edit grey">
       </a>
       <span class="separator-grey">
         |
       </span>
-      <a class="delete-task-js" href="/projects/<%= @project_id %>/tasks/<%= @id %>.json"><img src="/assets/trash_grey-20c4bded01f43839a6b1907971aa56918527f925c0996f94384e346021c8bd3c.png" alt="Trash grey" title="Delete">
+      <a class="delete-task-js" href="/projects/<%= @project_id %>/tasks/<%= @id %>.json"><img src="/images/trash_grey.png" alt="Trash grey" title="Delete">
       </a>
     </div>
   </div>

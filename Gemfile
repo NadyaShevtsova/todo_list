@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-datepicker-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
 gem 'eco'
@@ -10,6 +11,7 @@ gem "font-awesome-rails"
 gem 'gon'
 gem 'haml'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'pg'

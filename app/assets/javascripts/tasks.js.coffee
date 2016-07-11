@@ -1,14 +1,11 @@
-@module 'Projects', ->
+@module 'Tasks', ->
   @init =->
-    Common.loadFormToModal()
-    submitProjectForm()
-    initDeleteProject()
+    submitTaskForm()
+    initDeleteTask()
+    initSortable()
 
-    $('#modals-form').on 'hidden.bs.modal', (e) ->
-      $(@).find('.modal-content').empty()
-
-  submitProjectForm = ->
-    $('#modals-form').on 'submit', 'form.project_form', (e) ->
+  submitTaskForm = ->
+    $('#modals-form').on 'submit', 'form.task-form', (e) ->
       e.preventDefault()
       self = $(@)
 
@@ -20,17 +17,18 @@
         success: (data) ->
           $('#modals-form').modal('hide')
           Notifications.success(data.success)
-          if self.attr('action') == "/projects"
-            $(".projects-list").append JST['templates/projects']({ id: data.id, name: data.name })
+          if self.attr('action') == "/projects/" + data.project_id + "/tasks"
+            $(".tasks-list .task:last").after JST['templates/tasks']({ id: data.id, project_id: data.project_id, name: data.name, mark_as_done: data.mark_as_done })
           else
-            $(".projects-list div#project_#{data.id}").find(".project-name").text(data.name)
+            $("#task_#{data.id}").find(".task-done input[type=checkbox]").prop('checked', data.mark_as_done)
+            $("#task_#{data.id}").find(".task-name").text(data.name)
         error: (xhr, ajaxOptions, thrownError) ->
             Forms.submitting(self)
 
             errors = $.parseJSON(xhr.responseText).errors
             errorMessage = []
             $.each errors, (key, val) ->
-              $("#project_#{ key }").addClass('border-danger').before JST['templates/field_errors']({ errors: val.join(", ") })
+              $("#task_#{ key }").addClass('border-danger').before JST['templates/field_errors']({ errors: val.join(", ") })
               i = 0
               while i < val.length
                 errorMessage.push( key.charAt(0).toUpperCase() + key.slice(1) + ": " + val[i] )
@@ -38,22 +36,29 @@
               return
             Notifications.error(errorMessage, '#error_explanation')
 
-  initDeleteProject = ->
-    $("body").on 'click', 'a.delete-project-js', (e) ->
+  initDeleteTask = ->
+    $("body").on 'click', 'a.delete-task-js', (e) ->
       e.preventDefault()
       self = $(@)
-      if confirm('Are you sure you want to delete this Project?')
+      if confirm('Are you sure you want to delete this Task?')
         $.ajax
           method: 'DELETE'
           url: self.attr('href')
           success: (data) ->
-            self.closest(".project-item").closest(".todo-list").remove()
+            self.closest(".task").remove()
             $('#modals-form').modal('hide')
             Notifications.success(data.success)
             error: (xhr, ajaxOptions, thrownError) ->
               response = $parseJSON(xhr.responseText)
               Notifications.error(response.error)
 
-$ ->
-  Projects.init() if $('#projects-index').length
+  initSortable = ->
+    $('#sortable').sortable
+      cursor: "move"
+      #placeholder: "highlight"
+      handle: '.move'
+      update: ->
+        $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
+$ ->
+  Tasks.init() if $('#projects-index').length

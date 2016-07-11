@@ -1,0 +1,16 @@
+= content_tag_for :div, task do
+  .row.task-item
+    .col-md-1.task-done{style: "width: 5.7%"}
+      = check_box_tag "mark_as_done", true, task.mark_as_done, id: "mark_as_done_#{task.id}"
+    .col-md-9.task-name{style: "width: 76.9%"}
+      = task.name
+    .col-md-2.task-actions{style: "width: 17%"}
+      = image_tag "move.png", class: "move", title: "Move me Up or Down"
+      %span.separator-grey
+        \|
+      = link_to edit_project_task_path(task.project, task), data: { :'remote-target' => '#modals-form .modal-content' }, class: 'open-modal-js', title: 'Edit' do
+        = image_tag "edit_grey.png"
+      %span.separator-grey
+        \|
+      = link_to project_task_path(task.project, task, format: :json), class: "delete-task-js" do
+        = image_tag "trash_grey.png", title: "Delete"

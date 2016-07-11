@@ -7,5 +7,6 @@ class Task < ActiveRecord::Base
     t.validates :project
   end
 
-  validates :prioritize, inclusion: {in: [true, false]}
+  validates :mark_as_done, inclusion: {in: [true, false]}
+  validates_numericality_of :prioritize, allow_nil: true
 end

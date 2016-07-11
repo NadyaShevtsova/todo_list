@@ -1,0 +1,30 @@
+.modal-header
+  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+  %h4.modal-title
+    = @task.new_record? ? 'New' : 'Edit'
+    %span.semi-bold Task
+
+= form_for [@project, @task], html: { class: 'form-horizontal task-form' } do |f|
+  .modal-body
+    #error_explanation
+    .form-group
+      = f.label :name, class: 'col-sm-3 control-label'
+      .col-sm-5
+        = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :deadline, class: 'col-sm-3 control-label'
+      .col-sm-5
+        = f.text_field :deadline, value: (f.object.deadline ? f.object.deadline : Date.current).strftime('%d/%m/%Y'),
+                              placeholder: "dd/mm/yyyy",
+                              'data-behaviour' => 'datepicker',
+                              class: 'form-control datepicker'
+    .form-group
+      .col-sm-3.control-label
+      .col-sm-5
+        = f.check_box :mark_as_done
+        = "mark as done"
+
+  .modal-footer
+    .pull-right
+      = f.submit "Submit", class: 'btn btn-default'
+

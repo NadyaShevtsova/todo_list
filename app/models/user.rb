@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :identities, dependent: :destroy
   has_many :projects, dependent: :destroy
+  has_many :tasks, through: :projects
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 

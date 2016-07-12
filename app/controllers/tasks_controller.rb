@@ -25,8 +25,12 @@ class TasksController < ApplicationController
   def update
     task = find_task
     if task.update(task_params)
-      render json: { success: "Task was successfully updated.",
+      if params[:only_message]
+        render json: { success: "Field 'mark as done' was successfully updated." }, status: 201
+      else
+        render json: { success: "Task was successfully updated.",
                      task: task }, status: 201
+      end
     else
       render json: { errors: task.errors }, status: 422
     end

@@ -3,6 +3,7 @@
     submitTaskForm()
     initDeleteTask()
     initSortable()
+    initUpdateMark()
 
   submitTaskForm = ->
     $('#modals-form').on 'submit', 'form.task-form', (e) ->
@@ -20,8 +21,8 @@
           if self.attr('action') == "/projects/" + data.task.project_id + "/tasks"
             $(".list_" + data.task.project_id + " .tasks-list").append JST['templates/tasks']({ task: data.task })
           else
-            $("#task_#{data.id}").find(".task-done input[type=checkbox]").prop('checked', data.task.mark_as_done)
-            $("#task_#{data.id}").find(".task-name").text(data.task.name)
+            $("#task_#{data.task.id}").find(".task-done input[type=checkbox]").prop('checked', data.task.mark_as_done)
+            $("#task_#{data.task.id}").find(".task-name").text(data.task.name)
         error: (xhr, ajaxOptions, thrownError) ->
             Forms.submitting(self)
 
@@ -66,6 +67,25 @@
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
     $('.sortable').disableSelection()
+
+  initUpdateMark = ->
+    $(".projects-list").on 'change', "input[type='checkbox']", (e) ->
+      project_id = $(@).closest(".todo-list").attr("class").match(/\d+/)[0]
+      task_id = $(@).attr("id").match(/\d+/)[0]
+      mark_as_done = if $(@).attr("checked") then false else true
+
+      $.ajax
+        method: 'PATCH'
+        data:
+          only_message: true
+          task:
+            mark_as_done: mark_as_done
+        url: "/projects/" + project_id + "/tasks/" + task_id
+        success: (data) ->
+          Notifications.success(data.success)
+          error: (xhr, ajaxOptions, thrownError) ->
+            response = $parseJSON(xhr.responseText)
+            Notifications.error(response.error)
 
 $ ->
   Tasks.init() if $('#projects-index').length

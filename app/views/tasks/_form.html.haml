@@ -27,4 +27,21 @@
   .modal-footer
     .pull-right
       = f.submit "Submit", class: 'btn btn-default'
+- unless @task.new_record?
+  .modal-header
+    %h4.modal-title= "Comments"
+  .modal-body
+    = form_for Comment.new, html: { class: 'form-horizontal comment-form' } do |f|
+      = f.hidden_field :commentable_id, value: @task.id
+      = f.hidden_field :commentable_type, value: @task.class.name
+      .form-group
+        .col-sm-1.control-label
+        .col-sm-8
+          = f.text_area :comment, class: 'form-control', placeholder: 'Add you comment'
+        .col-sm-3
+          .pull-right
+            = f.submit "Send", class: 'btn btn-default'
+
+    %div{ id: "task-#{@task.id}-comments", class: "comments-list" }
+      = render partial: 'comments/comment', collection: @task.comments
 

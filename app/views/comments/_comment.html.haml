@@ -1,0 +1,10 @@
+= content_tag_for :div, comment do
+  .row
+    .col-md-1
+      .glyphicon.glyphicon-menu-right
+    .col-md-9
+      = comment.comment
+    .col-md-2
+      %span
+        = link_to comment_path(comment), class: 'delete-comment-js' do
+          .glyphicon.glyphicon-trash

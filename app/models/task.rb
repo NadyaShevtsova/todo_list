@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
   belongs_to :project
 
+  acts_as_commentable
+
   with_options presence: true do |t|
     t.validates :name, length: { maximum: 255 }
     t.validates :deadline, timeliness: { type: :date }

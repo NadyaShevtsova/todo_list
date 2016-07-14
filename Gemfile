@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'acts_as_commentable'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-datepicker-rails'
 gem 'coffee-rails', '~> 4.1.0'

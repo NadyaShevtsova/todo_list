@@ -36,9 +36,18 @@
       = f.hidden_field :commentable_type, value: @task.class.name
       .form-group
         .col-sm-1.control-label
-        .col-sm-8
+        .col-sm-5
           = f.text_area :comment, class: 'form-control', placeholder: 'Add you comment'
-        .col-sm-3
+        .col-sm-4.js-attachment
+          .file-fields
+            = file_field_tag :file, :'data-url' => attachments_path(format: :json)
+            .percent.pull-right
+            .progress-animated
+              .bar{ style: 'width: 0%;' }
+            .clear
+          .result
+
+        .col-sm-2
           .pull-right
             = f.submit "Send", class: 'btn btn-default'
 

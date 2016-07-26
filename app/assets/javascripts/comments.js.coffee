@@ -16,8 +16,8 @@
         success: (data) ->
           $('#comment_comment').val("")
           $("#task-" + data.comment.commentable_id + "-comments").append JST['templates/comments']({ comment: data.comment })
+          self.find('.js-attachment .result').empty()
         error: (xhr, ajaxOptions, thrownError) ->
-            console.log("2")
             Forms.submitting(self)
 
             errors = $.parseJSON(xhr.responseText).errors

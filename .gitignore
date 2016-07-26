@@ -10,6 +10,7 @@ tmp/**/*
 config/database.yml
 .byebug_history
 logfile
+public/uploads/*
 
 # Ignore application configuration
 /config/application.yml

@@ -1,0 +1,7 @@
+<div id="attachment_<%= @attachment.id%>">
+  <a href="<%= @attachment.url%>" target='_blank'> <%= @attachment.name %> </a>
+  <a href="/attachments/<%= @attachment.id %>.json" class="pull-right delete-attachment-js">
+    <div class="glyphicon glyphicon-trash"></div>
+  </a>
+</div>
+

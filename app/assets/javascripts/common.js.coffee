@@ -7,6 +7,7 @@
       self = $(@)
       $($(@).data('remote-target')).load $(@).attr('href'), ->
         initDatepicker()
+        Attachments.initFileupload()
 
         task_name_field = self.closest(".create-task").find("#create_task_name")
         if task_name_field

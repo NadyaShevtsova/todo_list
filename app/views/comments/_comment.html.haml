@@ -2,9 +2,14 @@
   .row
     .col-md-1
       .glyphicon.glyphicon-menu-right
-    .col-md-9
+    .col-md-6
       = comment.comment
-    .col-md-2
+    .col-md-4
+      - unless comment.attachments.blank?
+        - comment.attachments.each do |att|
+          %div
+            = link_to att.filename, att.file_url
+    .col-md-1
       %span
         = link_to comment_path(comment), class: 'delete-comment-js' do
           .glyphicon.glyphicon-trash

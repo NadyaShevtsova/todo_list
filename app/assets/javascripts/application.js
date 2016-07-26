@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/sortable
+//= require jquery-fileupload/basic
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require_tree ../../../vendor/assets/javascripts

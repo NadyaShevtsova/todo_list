@@ -3,10 +3,20 @@
     <div class="col-md-1">
       <div class="glyphicon glyphicon-menu-right"></div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-6">
       <%= @comment.comment %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
+      <% for attachment in @comment.attachments: %>
+        <div>
+          <a href="<%= attachment.file.url %>">
+            <% filename = attachment.file.url.split('/').pop() %>
+            <%= jQuery.trim(filename ).substring(0, 18).trim(this) + "...";%>
+          </a>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-1">
       <span>
         <a href="/comments/<%= @comment.id %>" class="delete-comment-js"><div class="glyphicon glyphicon-trash"></div>
         </a>

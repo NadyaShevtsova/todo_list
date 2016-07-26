@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
     comment.user = current_user
 
     if comment.save
-      render json: { comment: comment }, status: 201
+      render json: { comment: comment.as_json(include: { attachments: {
+                                          only: :file }} )}, status: 201
     else
       render json: { errors: comment.errors }, status: 422
     end
@@ -22,6 +23,6 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:user_id, :comment, :commentable_id, :commentable_type)
+    params.require(:comment).permit(:user_id, :comment, :commentable_id, :commentable_type, attachment_ids: [])
   end
 end

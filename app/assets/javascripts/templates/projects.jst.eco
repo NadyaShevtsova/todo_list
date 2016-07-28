@@ -1,23 +1,25 @@
 <div class="todo-list list_<%= @id %>">
+<div class="todo-list list_<%= @id %>">
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 list-header">
       <div class="row">
-        <div class="project project-item" id="project_<%= @id %>"><div class="col-md-1" style="width: 5%">
-          <img src="/images/table.png" alt="Table">
-        </div>
-        <div class="col-md-9" style="width: 84.333%">
-          <span class="project-name"> <%= @name %> </span>
-        </div>
-        <div class="col-md-2" style="width: 10.666%">
-          <a data-remote-target="#modals-form .modal-content" class="open-modal-js project_action" title="Edit" href="/projects/<%= @id %>/edit"><img src="/images/edit_blue.png" alt="Edit blue">
-          </a>
-          <span class="separator">
-            |
-          </span>
-          <a class="project_action delete-project-js" href="/projects/<%= @id %>.json"><img src="/images/trash_blue.png" alt="Trash blue">
-          </a>
-        </div>
+        <div class="project project-item" id="project_<%= @id %>">
+          <div class="col-md-1" style="width: 5%">
+            <img src="/images/table.png" alt="Table">
+          </div>
+          <div class="col-md-9" style="width: 84.333%">
+            <span class="project-name"> <%= @name %> </span>
+          </div>
+          <div class="col-md-2" style="width: 10.666%">
+            <a data-remote-target="#modals-form .modal-content" class="open-modal-js project_action" title="Edit" href="/projects/<%= @id %>/edit"><img src="/images/edit_blue.png" alt="Edit blue">
+            </a>
+            <span class="separator">
+              |
+            </span>
+            <a class="project_action delete-project-js" href="/projects/<%= @id %>.json"><img src="/images/trash_blue.png" alt="Trash blue">
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -27,12 +29,26 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 create-task">
       <div class="row">
-        <div class="span1">
+        <div class="col-md-1" style="width: 5%">
           <img class="green-plus-icon" src="/images/plus_green.png" alt="Plus green">
         </div>
-        <div class="span9"></div>
-        <div class="span2"></div>
+        <div class="col-md-11" style="width: 95%">
+          <div class="form-group" style="margin: 4px 0px;">
+            <div class="input-group input-group-md">
+              <input class="form-control" id="create_task_name" placeholder="Start typing here to create a task..." type="text">
+              <span class="input-group-btn">
+                <a data-remote-target="#modals-form .modal-content" class="open-modal-js btn green-button" title="New" href="/projects/<%= @id %>/tasks/new">Add Task</a>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 tasks-list sortable ui-sortable" data-update-url="/projects/<%= @id %>/tasks/sort">
     </div>
     <div class="col-md-2"></div>
   </div>

@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
 
   def self.temp_email( uid, provider )
-    "#{TEMP_EMAIL_PREFIX}-#{uid}-#{provider}.com"
+    "#{ TEMP_EMAIL_PREFIX }-#{ uid }-#{ provider }.com"
   end
 
 end

@@ -37,4 +37,3 @@
     .col-md-8.tasks-list.sortable{ "data-update-url" => sort_project_tasks_url(project) }
       = render partial: "tasks/task", collection: project.tasks.order(:prioritize)
     .col-md-2
-

@@ -3,6 +3,7 @@
     Common.loadFormToModal()
     submitProjectForm()
     initDeleteProject()
+    Tasks.initSortable()
 
     $('#modals-form').on 'hidden.bs.modal', (e) ->
       $(@).find('.modal-content').empty()
@@ -22,21 +23,22 @@
           Notifications.success(data.success)
           if self.attr('action') == "/projects"
             $(".projects-list").append JST['templates/projects']({ id: data.id, name: data.name })
+            Tasks.initSortable()
           else
             $(".projects-list div#project_#{data.id}").find(".project-name").text(data.name)
         error: (xhr, ajaxOptions, thrownError) ->
-            Forms.submitting(self)
+          Forms.submitting(self)
 
-            errors = $.parseJSON(xhr.responseText).errors
-            errorMessage = []
-            $.each errors, (key, val) ->
-              $("#project_#{ key }").addClass('border-danger').before JST['templates/field_errors']({ errors: val.join(", ") })
-              i = 0
-              while i < val.length
-                errorMessage.push( key.charAt(0).toUpperCase() + key.slice(1) + ": " + val[i] )
-                i++
-              return
-            Notifications.error(errorMessage, '#error_explanation')
+          errors = $.parseJSON(xhr.responseText).errors
+          errorMessage = []
+          $.each errors, (key, val) ->
+            $("#project_#{ key }").addClass('border-danger').before JST['templates/field_errors']({ errors: val.join(", ") })
+            i = 0
+            while i < val.length
+              errorMessage.push( key.charAt(0).toUpperCase() + key.slice(1) + ": " + val[i] )
+              i++
+            return
+          Notifications.error(errorMessage, '#error_explanation')
 
   initDeleteProject = ->
     $("body").on 'click', 'a.delete-project-js', (e) ->
@@ -50,10 +52,9 @@
             self.closest(".project-item").closest(".todo-list").remove()
             $('#modals-form').modal('hide')
             Notifications.success(data.success)
-            error: (xhr, ajaxOptions, thrownError) ->
-              response = $parseJSON(xhr.responseText)
-              Notifications.error(response.error)
+          error: (xhr, ajaxOptions, thrownError) ->
+            response = $parseJSON(xhr.responseText)
+            Notifications.error(response.error)
 
 $ ->
   Projects.init() if $('#projects-index').length
-

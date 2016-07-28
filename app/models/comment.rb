@@ -7,8 +7,10 @@ class Comment < ActiveRecord::Base
   has_many :attachments, dependent: :destroy
   attr_accessor :attachment_ids
 
-  validates :comment, presence: true, length: { maximum: 65536 }
-  validates :user, presence: true
+  with_options presence: true do |c|
+    c.validates :comment, length: { maximum: 65536 }
+    c.validates :user
+  end
 
   default_scope -> { order('created_at ASC') }
   after_create :update_attachments
